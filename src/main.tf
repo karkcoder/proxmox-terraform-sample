@@ -17,12 +17,12 @@ provider "proxmox" {
 resource "proxmox_vm_qemu" "test_server" {
   define_connection_info = false
   agent                  = 1
-  count                  = 1                            # just want 1 for now, set to 0 and apply to destroy VM
-  name                   = "test-vm-${count.index + 1}" #count.index starts at 0, so + 1 means this VM will be named test-vm-1 in proxmox
+  count                  = 1
+  name                   = "test-vm-${count.index + 1}"
   target_node            = var.proxmox_host
   iso                    = "local:iso/ubuntu-22.04.1-live-server-amd64.iso"
 
-  # basic VM settings here. agent refers to guest agent
+  # basic VM settings
   cores   = 2
   sockets = 1
   cpu     = "host"
